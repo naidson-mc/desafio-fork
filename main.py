@@ -16,36 +16,51 @@ Instruções:
 
 # Função para calcular a média
 def calcular_media(lista):
-    # TODO: implementar a soma dos elementos e dividir pelo tamanho da lista
-    pass
-
+    if len(lista) == 0:
+        return 0
+    return sum(lista) / len(lista)
 
 # Função para calcular a mediana
 def calcular_mediana(lista):
-    # TODO: ordenar a lista e encontrar o elemento do meio
-    # 💡 Dica: se o tamanho for par, tire a média dos dois elementos centrais
-    pass
-
+    lista_ordenada = sorted(lista)
+    tamanho = len(lista_ordenada)
+    
+    if tamanho % 2 == 0:  # Se o tamanho da lista for par
+        meio1 = lista_ordenada[tamanho // 2 - 1]
+        meio2 = lista_ordenada[tamanho // 2]
+        return (meio1 + meio2) / 2
+    else:  # Se o tamanho da lista for ímpar
+        return lista_ordenada[tamanho // 2]
 
 # Função para calcular a moda
 def calcular_moda(lista):
-    # TODO: encontrar o valor que mais aparece
-    # 💡 Dica: use um dicionário para contar as ocorrências
-    pass
-
+    ocorrencias = {}
+    
+    for num in lista:
+        if num in ocorrencias:
+            ocorrencias[num] += 1
+        else:
+            ocorrencias[num] = 1
+    
+    # Encontra o número com mais ocorrências
+    maior_ocorrencia = max(ocorrencias.values())
+    moda = [num for num, freq in ocorrencias.items() if freq == maior_ocorrencia]
+    
+    # Se mais de um número tiver a mesma maior ocorrência, retornamos todos.
+    return moda
 
 def main():
     try:
         numeros = [10, 20, 20, 30, 40, 40, 40, 50]
 
-        print("📊 Calculadora Estatística")
+        print("Calculadora Estatística")
         print(f"Lista de números: {numeros}")
         print(f"Média: {calcular_media(numeros)}")
         print(f"Mediana: {calcular_mediana(numeros)}")
         print(f"Moda: {calcular_moda(numeros)}")
 
     except Exception as e:
-        print(f"⚠️ Ocorreu um erro: {e}")
+        print(f"Ocorreu um erro: {e}")
 
 
 if __name__ == "__main__":
